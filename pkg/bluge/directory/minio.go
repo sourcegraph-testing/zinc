@@ -22,7 +22,6 @@ import (
 	"crypto/md5"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"path/filepath"
 	"strconv"
 
@@ -151,7 +150,7 @@ func (s *MinIODirectory) Load(kind string, id uint64) (*segment.Data, io.Closer,
 		return nil, nil, err
 	}
 
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		log.Print("Load: failed to read object: ", err.Error())
 		return nil, nil, err

@@ -21,7 +21,6 @@ import (
 	"crypto/md5"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"path/filepath"
 	"strconv"
 
@@ -146,7 +145,7 @@ func (s *S3Directory) Load(kind string, id uint64) (*segment.Data, io.Closer, er
 		return nil, nil, err
 	}
 
-	data, err := ioutil.ReadAll(output.Body)
+	data, err := io.ReadAll(output.Body)
 	if err != nil {
 		log.Print("Load: failed to read object", err.Error())
 		return nil, nil, err
